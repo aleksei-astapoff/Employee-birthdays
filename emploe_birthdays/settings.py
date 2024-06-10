@@ -27,7 +27,6 @@ INSTALLED_APPS = [
 
     'rest_framework',
 
-    'birthdays.apps.BirthdaysConfig',
     'users.apps.UsersConfig',
     'api.apps.ApiConfig',
 
