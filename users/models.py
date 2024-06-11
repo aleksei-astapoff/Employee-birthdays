@@ -2,16 +2,19 @@ from django.contrib.auth import password_validation as validators
 from django.core.validators import validate_email
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.exceptions import ValidationError
 
-from emploe_birthdays.constant import (MAX_LENGTH_EMAIL_FIELD, USERNAME,
+from emploe_birthdays.constant import (MAX_LENGTH_EMAIL_FIELD, USER_FIELD,
                                        MAX_LENGTH_CHAR_FIELD)
 
 
 class User(AbstractUser):
     """Модель пользователя."""
 
-    USERNAME_FIELD = USERNAME
-    REQUIRED_FIELDS = ('username', 'first_name', 'last_name', 'date_of_birth')
+    USERNAME_FIELD = USER_FIELD
+    REQUIRED_FIELDS = (
+        'username', 'first_name', 'last_name', 'date_of_birth', 'department'
+    )
 
     email = models.EmailField(
         'Электронная почта',
@@ -23,13 +26,13 @@ class User(AbstractUser):
     username = models.CharField(
         'Имя пользователя',
         max_length=MAX_LENGTH_CHAR_FIELD,
-        unique=True
+        unique=True,
     )
 
     date_of_birth = models.DateField(
         'Дата рождения',
         blank=False,
-        null=False
+        null=False,
     )
 
     first_name = models.CharField(
@@ -48,6 +51,7 @@ class User(AbstractUser):
         validators=[validators.validate_password],
         help_text='Придумайте пароль',
     )
+
     department = models.CharField(
         'Отдел',
         max_length=MAX_LENGTH_CHAR_FIELD,
@@ -60,23 +64,26 @@ class User(AbstractUser):
         ordering = ('username',)
 
     def __str__(self):
-        return self.username
+        return (
+            f'Username: {self.username}, '
+            f'Email: {self.email}'
+        )
 
 
-class Subscription(models.Model):
+class Subscribe(models.Model):
     """Модель подписки."""
 
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='subscriptions',
+        related_name='follower',
         verbose_name='Подписчик',
     )
 
     birthday_person = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='subscribers',
+        related_name='following',
         verbose_name='Именинник',
     )
 
@@ -93,3 +100,11 @@ class Subscription(models.Model):
 
     def __str__(self):
         return f'{self.user} подписан на {self.birthday_person}'
+
+    def clean(self) -> None:
+        if self.user == self.birthday_person:
+            raise ValidationError('Нельзя подписаться на самого себя')
+
+    def save(self, *args, **kwargs) -> None:
+        self.clean()
+        super().save(*args, **kwargs)
