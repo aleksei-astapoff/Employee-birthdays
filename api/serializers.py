@@ -1,5 +1,6 @@
 from djoser.serializers import UserSerializer
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 from users.models import Subscribe, User
 
@@ -43,10 +44,7 @@ class SubscriptionsSerializer(CustomUserSerializer):
     is_subscribed_count = serializers.SerializerMethodField(read_only=True)
 
     class Meta(CustomUserSerializer.Meta):
-        fields = CustomUserSerializer.Meta.fields + ('is_subscribed_count',)
-
-    def get_is_subscribed_count(self, obj):
-        return obj.follower.count()
+        fields = CustomUserSerializer.Meta.fields
 
 
 class SubscribeSerializer(serializers.ModelSerializer):
@@ -55,7 +53,6 @@ class SubscribeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Subscribe
         fields = '__all__'
-        read_oniy_fields = '__all__'
 
     def validate(self, data):
         if data['user'] == data['birthday_person']:

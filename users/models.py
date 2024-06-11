@@ -103,7 +103,7 @@ class Subscribe(models.Model):
 
     def clean(self) -> None:
         if self.user == self.birthday_person:
-            raise ValidationError('Нельзя подписаться на самого себя')
+            raise ValidationError('Нельзя подписаться на самого себя.')
 
     def save(self, *args, **kwargs) -> None:
         self.clean()

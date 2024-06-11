@@ -4,10 +4,10 @@ from django.db.models import BooleanField
 from django.shortcuts import get_object_or_404
 from djoser.views import UserViewSet
 from rest_framework import status
-from rest_framework.permissions import (IsAuthenticated,
-                                        IsAuthenticatedOrReadOnly)
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.exceptions import ValidationError
 
 from users.models import User, Subscribe
 from api.serializers import (CustomUserSerializer, SubscriptionsSerializer,
@@ -30,7 +30,9 @@ class UserViewSet(UserViewSet):
         user = request.user
         queryset = User.objects.filter(
             following__user=user
-        ).annotate(is_subscribed=Value(True, output_field=BooleanField()))
+        ).annotate(is_subscribed=Value(True, output_field=BooleanField())
+                   ).order_by('following__user')
+
         serializer = SubscriptionsSerializer(
             queryset, many=True,
             context={'request': request}
@@ -49,7 +51,7 @@ class UserViewSet(UserViewSet):
 
         serializer = SubscribeSerializer(
             data=data, context={'request': request})
-        serializer.is_valid(raise_exception=True)
+        serializer.is_valid(raise_exception=True, )
         serializer.save()
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
