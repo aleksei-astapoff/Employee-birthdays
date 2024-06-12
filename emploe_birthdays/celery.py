@@ -9,6 +9,8 @@ app = Celery('emploe_birthdays')
 app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 
+app.conf.broker_connection_retry_on_startup = True
+
 app.conf.beat_schedule = {
     'send_birthday_email': {
         'task': 'users.tasks.send_birthday_email',
