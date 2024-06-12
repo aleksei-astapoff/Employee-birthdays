@@ -163,5 +163,5 @@ cython_debug/
 
 infra_dev/
 .vscode
-.db
+*.db
 sent_emails/
