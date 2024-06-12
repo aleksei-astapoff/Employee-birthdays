@@ -1,6 +1,5 @@
 from djoser.serializers import UserSerializer
 from rest_framework import serializers
-from rest_framework.exceptions import ValidationError
 
 from users.models import Subscribe, User
 
@@ -15,7 +14,6 @@ class CustomUserSerializer(UserSerializer):
         fields = (
             'id',
             'email',
-            'username',
             'date_of_birth',
             'first_name',
             'last_name',
@@ -25,7 +23,6 @@ class CustomUserSerializer(UserSerializer):
         read_only_fields = (
             'id',
             'email',
-            'username',
             'date_of_birth',
             'first_name',
             'last_name',
@@ -41,7 +38,6 @@ class CustomUserSerializer(UserSerializer):
 
 class SubscriptionsSerializer(CustomUserSerializer):
     """ Сериализатор для подписки. """
-    is_subscribed_count = serializers.SerializerMethodField(read_only=True)
 
     class Meta(CustomUserSerializer.Meta):
         fields = CustomUserSerializer.Meta.fields

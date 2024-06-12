@@ -7,7 +7,6 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework.exceptions import ValidationError
 
 from users.models import User, Subscribe
 from api.serializers import (CustomUserSerializer, SubscriptionsSerializer,
@@ -38,7 +37,7 @@ class UserViewSet(UserViewSet):
             context={'request': request}
         )
 
-        return serializer.data
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     @action(detail=True, methods=['post'],
             permission_classes=(IsAuthenticated,))

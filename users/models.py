@@ -1,3 +1,4 @@
+from typing import Iterable
 from django.contrib.auth import password_validation as validators
 from django.core.validators import validate_email
 from django.db import models
@@ -6,6 +7,7 @@ from django.core.exceptions import ValidationError
 
 from emploe_birthdays.constant import (MAX_LENGTH_EMAIL_FIELD, USER_FIELD,
                                        MAX_LENGTH_CHAR_FIELD)
+from users.utils import UserManager
 
 
 class User(AbstractUser):
@@ -13,7 +15,7 @@ class User(AbstractUser):
 
     USERNAME_FIELD = USER_FIELD
     REQUIRED_FIELDS = (
-        'username', 'first_name', 'last_name', 'date_of_birth', 'department'
+        'first_name', 'last_name', 'date_of_birth', 'department'
     )
 
     email = models.EmailField(
@@ -58,6 +60,8 @@ class User(AbstractUser):
         blank=True
     )
 
+    objects = UserManager()
+
     class Meta:
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
@@ -68,6 +72,10 @@ class User(AbstractUser):
             f'Username: {self.username}, '
             f'Email: {self.email}'
         )
+
+    def save(self, *args, **kwargs) -> None:
+        self.username == self.email
+        super().save(*args, **kwargs)
 
 
 class Subscribe(models.Model):
