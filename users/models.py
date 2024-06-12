@@ -1,4 +1,3 @@
-from typing import Iterable
 from django.contrib.auth import password_validation as validators
 from django.core.validators import validate_email
 from django.db import models
