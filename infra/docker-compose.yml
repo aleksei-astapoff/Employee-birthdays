@@ -1,0 +1,52 @@
+version: '3.3'
+
+volumes:
+  postgres_data:
+
+services:
+  db:
+    image: postgres:14-alpine
+    env_file: .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: ../
+    env_file: .env
+    depends_on:
+      - db
+      - redis
+      - nginx
+
+  nginx:
+    image: nginx:1.19.3
+    ports:
+      - "8000:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+    depends_on:
+      - db
+
+  redis:
+    image: redis:6
+
+  celery:
+    build: ../
+    env_file: .env
+    command: celery -A emploe_birthdays worker
+    depends_on:
+      - db
+      - redis
+      - backend
+
+  celery-beat:
+    build: ../
+    env_file: .env
+    command: celery -A emploe_birthdays beat
+    depends_on:
+      - db
+      - redis
+      - backend
+    tmpfs:
+      - /app/celerybeat-schedule.db
+     
