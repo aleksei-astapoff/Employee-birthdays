@@ -2,11 +2,11 @@ from django.contrib.auth import password_validation as validators
 from django.core.validators import validate_email
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.core.exceptions import ValidationError
 
 from emploe_birthdays.constant import (MAX_LENGTH_EMAIL_FIELD, USER_FIELD,
                                        MAX_LENGTH_CHAR_FIELD)
 from users.utils import UserManager
+from users.validators import validate_unique_subscription
 
 
 class User(AbstractUser):
@@ -102,16 +102,20 @@ class Subscribe(models.Model):
             models.UniqueConstraint(
                 fields=['user', 'birthday_person'],
                 name='unique_subscription',
-            )
+            ),
+            models.CheckConstraint(
+                check=~models.Q(user=models.F('birthday_person')),
+                name='prevent_self_subscription',
+            ),
         ]
 
     def __str__(self):
         return f'{self.user} подписан на {self.birthday_person}'
 
-    def clean(self) -> None:
-        if self.user == self.birthday_person:
-            raise ValidationError('Нельзя подписаться на самого себя.')
+    def clean(self):
+        validate_unique_subscription(
+            Subscribe, self.user, self.birthday_person)
 
-    def save(self, *args, **kwargs) -> None:
+    def save(self, *args, **kwargs):
         self.clean()
         super().save(*args, **kwargs)

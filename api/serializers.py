@@ -48,7 +48,7 @@ class SubscribeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Subscribe
-        fields = '__all__'
+        fields = ('user', 'birthday_person')
 
     def validate(self, data):
         if data['user'] == data['birthday_person']:
@@ -67,3 +67,13 @@ class SubscribeSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         return SubscriptionsSerializer(
             instance.birthday_person, context=self.context).data
+
+    def is_valid(self, raise_exception=False):
+        try:
+            return super().is_valid(raise_exception=raise_exception)
+        except serializers.ValidationError as exc:
+            if ('non_field_errors' in exc.detail and any(
+                 err.code == 'unique' for err in exc.detail['non_field_errors']
+                 )):
+                exc.detail['non_field_errors'] = ['Подписка уже существует.']
+            raise exc
