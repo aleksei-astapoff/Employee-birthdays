@@ -1,6 +1,7 @@
 volumes:
   postgres_data:
   static_value:
+  sent_emails:
 
 services:
   db:
@@ -13,6 +14,7 @@ services:
     build: ../
     volumes:
       - static_value:/app/static/
+      - sent_emails:/app/sent_emails/
     env_file: .env
     depends_on:
       - db
@@ -34,8 +36,11 @@ services:
 
   celery:
     build: ../
+    user: celery
+    volumes:
+      - sent_emails:/app/sent_emails/
     env_file: .env
-    command: celery -A emploe_birthdays worker
+    command: celery -A emploe_birthdays worker -l info
     depends_on:
       - db
       - redis
@@ -44,7 +49,7 @@ services:
   celery-beat:
     build: ../
     env_file: .env
-    command: celery -A emploe_birthdays beat
+    command: celery -A emploe_birthdays beat -l info
     depends_on:
       - db
       - redis
