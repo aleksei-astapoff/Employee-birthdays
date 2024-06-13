@@ -142,7 +142,7 @@ CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND', 'redis://localhost:63
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 
-if os.getenv('SEND_EMAILS', default='False') == 'True':
+if os.getenv('SEND_EMAILS', default='False') == 'False':
     EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
     EMAIL_FILE_PATH = BASE_DIR / 'sent_emails'
 else:

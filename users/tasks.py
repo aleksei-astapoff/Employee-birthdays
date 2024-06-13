@@ -31,5 +31,4 @@ def send_birthday_email():
                from_email='your-email@example.com',
                recipient_list=[sub.email],
                fail_silently=True
-
             )
