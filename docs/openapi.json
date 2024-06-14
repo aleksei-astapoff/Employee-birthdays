@@ -1,0 +1,953 @@
+{
+  "openapi" : "3.0.2",
+  "info" : {
+    "title" : "",
+    "version" : ""
+  },
+  "servers" : [ {
+    "url" : "/"
+  } ],
+  "paths" : {
+    "/api/users/" : {
+      "get" : {
+        "tags" : [ "api" ],
+        "description" : "ViewSet для работы с пользователями.",
+        "operationId" : "listUsers",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/CustomUser"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "api" ],
+        "description" : "ViewSet для работы с пользователями.",
+        "operationId" : "createUser",
+        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UserCreate"
+              }
+            },
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UserCreate"
+              }
+            },
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UserCreate"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UserCreate"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/me/" : {
+      "get" : {
+        "tags" : [ "api" ],
+        "description" : "ViewSet для работы с пользователями.",
+        "operationId" : "meUser",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CustomUser"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "api" ],
+        "description" : "ViewSet для работы с пользователями.",
+        "operationId" : "meUser",
+        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CustomUser"
+              }
+            },
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CustomUser"
+              }
+            },
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CustomUser"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CustomUser"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "api" ],
+        "description" : "ViewSet для работы с пользователями.",
+        "operationId" : "meUser",
+        "parameters" : [ ],
+        "responses" : {
+          "204" : {
+            "description" : ""
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "api" ],
+        "description" : "ViewSet для работы с пользователями.",
+        "operationId" : "meUser",
+        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CustomUser"
+              }
+            },
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CustomUser"
+              }
+            },
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CustomUser"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CustomUser"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/subscriptions/" : {
+      "get" : {
+        "tags" : [ "api" ],
+        "description" : "ViewSet для работы с пользователями.",
+        "operationId" : "subscriptionsUser",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CustomUser"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{id}/" : {
+      "get" : {
+        "tags" : [ "api" ],
+        "description" : "ViewSet для работы с пользователями.",
+        "operationId" : "retrieveUser",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "A unique integer value identifying this Пользователь.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CustomUser"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "api" ],
+        "description" : "ViewSet для работы с пользователями.",
+        "operationId" : "updateUser",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "A unique integer value identifying this Пользователь.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CustomUser"
+              }
+            },
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CustomUser"
+              }
+            },
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CustomUser"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CustomUser"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "api" ],
+        "description" : "ViewSet для работы с пользователями.",
+        "operationId" : "destroyUser",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "A unique integer value identifying this Пользователь.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : ""
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "api" ],
+        "description" : "ViewSet для работы с пользователями.",
+        "operationId" : "partialUpdateUser",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "A unique integer value identifying this Пользователь.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CustomUser"
+              }
+            },
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CustomUser"
+              }
+            },
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CustomUser"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CustomUser"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/activation/" : {
+      "post" : {
+        "tags" : [ "api" ],
+        "description" : "ViewSet для работы с пользователями.",
+        "operationId" : "activationUser",
+        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Activation"
+              }
+            },
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Activation"
+              }
+            },
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Activation"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Activation"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/resend_activation/" : {
+      "post" : {
+        "tags" : [ "api" ],
+        "description" : "ViewSet для работы с пользователями.",
+        "operationId" : "resendActivationUser",
+        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SendEmailReset"
+              }
+            },
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SendEmailReset"
+              }
+            },
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SendEmailReset"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SendEmailReset"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/reset_password/" : {
+      "post" : {
+        "tags" : [ "api" ],
+        "description" : "ViewSet для работы с пользователями.",
+        "operationId" : "resetPasswordUser",
+        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SendEmailReset"
+              }
+            },
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SendEmailReset"
+              }
+            },
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SendEmailReset"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SendEmailReset"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/reset_password_confirm/" : {
+      "post" : {
+        "tags" : [ "api" ],
+        "description" : "ViewSet для работы с пользователями.",
+        "operationId" : "resetPasswordConfirmUser",
+        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PasswordResetConfirm"
+              }
+            },
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PasswordResetConfirm"
+              }
+            },
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PasswordResetConfirm"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PasswordResetConfirm"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/reset_email/" : {
+      "post" : {
+        "tags" : [ "api" ],
+        "description" : "ViewSet для работы с пользователями.",
+        "operationId" : "resetUsernameUser",
+        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SendEmailReset"
+              }
+            },
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SendEmailReset"
+              }
+            },
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SendEmailReset"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SendEmailReset"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/reset_email_confirm/" : {
+      "post" : {
+        "tags" : [ "api" ],
+        "description" : "ViewSet для работы с пользователями.",
+        "operationId" : "resetUsernameConfirmUser",
+        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UsernameResetConfirm"
+              }
+            },
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UsernameResetConfirm"
+              }
+            },
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UsernameResetConfirm"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UsernameResetConfirm"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/set_password/" : {
+      "post" : {
+        "tags" : [ "api" ],
+        "description" : "ViewSet для работы с пользователями.",
+        "operationId" : "setPasswordUser",
+        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SetPassword"
+              }
+            },
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SetPassword"
+              }
+            },
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SetPassword"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SetPassword"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/set_email/" : {
+      "post" : {
+        "tags" : [ "api" ],
+        "description" : "ViewSet для работы с пользователями.",
+        "operationId" : "setUsernameUser",
+        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SetUsername"
+              }
+            },
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SetUsername"
+              }
+            },
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SetUsername"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SetUsername"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{id}/subscribe/" : {
+      "post" : {
+        "tags" : [ "api" ],
+        "description" : "ViewSet для работы с пользователями.",
+        "operationId" : "subscribeUser",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "A unique integer value identifying this Пользователь.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CustomUser"
+              }
+            },
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CustomUser"
+              }
+            },
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CustomUser"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CustomUser"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "api" ],
+        "description" : "ViewSet для работы с пользователями.",
+        "operationId" : "deleteSubscribeUser",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "A unique integer value identifying this Пользователь.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : ""
+          }
+        }
+      }
+    },
+    "/api/auth/token/login/" : {
+      "post" : {
+        "tags" : [ "api" ],
+        "description" : "Use this endpoint to obtain user authentication token.",
+        "operationId" : "createTokenCreate",
+        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/TokenCreate"
+              }
+            },
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/TokenCreate"
+              }
+            },
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/TokenCreate"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TokenCreate"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/token/logout/" : {
+      "post" : {
+        "tags" : [ "api" ],
+        "description" : "Use this endpoint to logout user (remove user authentication token).",
+        "operationId" : "createTokenDestroy",
+        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : { }
+            },
+            "application/x-www-form-urlencoded" : {
+              "schema" : { }
+            },
+            "multipart/form-data" : {
+              "schema" : { }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : { }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "CustomUser" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "readOnly" : true
+          },
+          "email" : {
+            "type" : "string",
+            "format" : "email",
+            "readOnly" : true
+          },
+          "date_of_birth" : {
+            "type" : "string",
+            "format" : "date",
+            "readOnly" : true
+          },
+          "first_name" : {
+            "type" : "string",
+            "readOnly" : true
+          },
+          "last_name" : {
+            "type" : "string",
+            "readOnly" : true
+          },
+          "department" : {
+            "type" : "string",
+            "readOnly" : true
+          },
+          "is_subscribed" : {
+            "type" : "string",
+            "readOnly" : true
+          }
+        }
+      },
+      "UserCreate" : {
+        "required" : [ "date_of_birth", "email", "first_name", "last_name", "password" ],
+        "type" : "object",
+        "properties" : {
+          "first_name" : {
+            "maxLength" : 150,
+            "type" : "string"
+          },
+          "last_name" : {
+            "maxLength" : 150,
+            "type" : "string"
+          },
+          "date_of_birth" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "department" : {
+            "maxLength" : 150,
+            "type" : "string"
+          },
+          "email" : {
+            "maxLength" : 254,
+            "type" : "string",
+            "format" : "email"
+          },
+          "id" : {
+            "type" : "integer",
+            "readOnly" : true
+          },
+          "password" : {
+            "type" : "string",
+            "writeOnly" : true
+          }
+        }
+      },
+      "Activation" : {
+        "required" : [ "token", "uid" ],
+        "type" : "object",
+        "properties" : {
+          "uid" : {
+            "type" : "string"
+          },
+          "token" : {
+            "type" : "string"
+          }
+        }
+      },
+      "SendEmailReset" : {
+        "required" : [ "email" ],
+        "type" : "object",
+        "properties" : {
+          "email" : {
+            "type" : "string",
+            "format" : "email"
+          }
+        }
+      },
+      "PasswordResetConfirm" : {
+        "required" : [ "new_password", "token", "uid" ],
+        "type" : "object",
+        "properties" : {
+          "uid" : {
+            "type" : "string"
+          },
+          "token" : {
+            "type" : "string"
+          },
+          "new_password" : {
+            "type" : "string"
+          }
+        }
+      },
+      "UsernameResetConfirm" : {
+        "required" : [ "new_email" ],
+        "type" : "object",
+        "properties" : {
+          "new_email" : {
+            "maxLength" : 254,
+            "type" : "string",
+            "format" : "email"
+          }
+        }
+      },
+      "SetPassword" : {
+        "required" : [ "current_password", "new_password" ],
+        "type" : "object",
+        "properties" : {
+          "new_password" : {
+            "type" : "string"
+          },
+          "current_password" : {
+            "type" : "string"
+          }
+        }
+      },
+      "SetUsername" : {
+        "required" : [ "current_password", "new_email" ],
+        "type" : "object",
+        "properties" : {
+          "current_password" : {
+            "type" : "string"
+          },
+          "new_email" : {
+            "maxLength" : 254,
+            "type" : "string",
+            "format" : "email"
+          }
+        }
+      },
+      "TokenCreate" : {
+        "type" : "object",
+        "properties" : {
+          "password" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }
+}
