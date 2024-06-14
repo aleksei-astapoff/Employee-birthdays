@@ -127,6 +127,6 @@ docker compose exec backend python manage.py migrate
 docker compose exec backend python manage.py createsuperuser
 ```
 
-Приложение будет доступно по адресу: http://localhost:8000/
+Приложение будет доступно по адресу: http://localhost/
 
 В режиме разработчика будет доступна подсказка с доступными эндпоинтами.
