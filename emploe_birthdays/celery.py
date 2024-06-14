@@ -16,7 +16,6 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'send_birthday_email': {
         'task': 'users.tasks.send_birthday_email',
-        # 'schedule': crontab(minute=0, hour=21),
-        'schedule': crontab(minute='*/1'),
+        'schedule': crontab(minute=0, hour=21),
     }
 }
