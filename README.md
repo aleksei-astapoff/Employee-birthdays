@@ -41,12 +41,14 @@ git clone git@github.com:aleksei-astapoff/Employee-birthdays.git
 Команда для установки виртуального окружения на Mac или Linux:
 ```
 python3 -m venv env
+
 source env/bin/activate
 ```
 
 Команда для установки виртуального окружения на Windows:
 ```
 python -m venv venv
+
 source venv/Scripts/activate
 ```
 
