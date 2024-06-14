@@ -6,7 +6,7 @@ volumes:
 services:
   db:
     image: postgres:14-alpine
-    env_file: .env
+    env_file: ../.env
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -15,7 +15,7 @@ services:
     volumes:
       - static_value:/app/static/
       - sent_emails:/app/sent_emails/
-    env_file: .env
+    env_file: ../.env
     depends_on:
       - db
       - redis
@@ -39,7 +39,7 @@ services:
     user: celery
     volumes:
       - sent_emails:/app/sent_emails/
-    env_file: .env
+    env_file: ../.env
     command: celery -A emploe_birthdays worker -l info
     depends_on:
       - db
@@ -48,7 +48,7 @@ services:
 
   celery-beat:
     build: ../
-    env_file: .env
+    env_file: ../.env
     command: celery -A emploe_birthdays beat -l info
     depends_on:
       - db
