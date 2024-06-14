@@ -165,3 +165,4 @@ infra_dev/
 .vscode
 *.db
 sent_emails/
+.DS_Store
