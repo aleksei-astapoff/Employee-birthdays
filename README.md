@@ -76,6 +76,7 @@ redis-server
 Проверьте ответ сервиса в новом терминале, введя команды последовательно:
 ```
 redis-cli
+
 PING
 ```
 Ответ должен быть: PONG
@@ -108,6 +109,7 @@ celery -A employee_birthdays beat --loglevel=info
 База данных для запуска в контейнере PostgreSQL!
 ```
 cd infra
+
 docker-compose up --build
 
 ```
